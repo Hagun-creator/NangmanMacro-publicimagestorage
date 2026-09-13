@@ -8,10 +8,13 @@ on:
       - "scripts/**"
       - "shute6_site_data_v1.zip"
       - ".github/workflows/pages.yml"
+  issues:
+    types: [labeled, unlabeled, edited, reopened, closed]
   workflow_dispatch:
 
 permissions:
   contents: read
+  issues: read
   pages: write
   id-token: write
 
@@ -40,6 +43,9 @@ jobs:
           fi
           unzip -o shute6_site_data_v1.zip
       - name: Build 1037-template PNG browser
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python scripts/build_site.py
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
