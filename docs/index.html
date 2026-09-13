@@ -11,15 +11,15 @@
 <body>
 <header><div class="wrap top"><h1>낭만강호 한국판 이미지 공동수집</h1><span class="headmuted">Shute6 PNG ↔ 검증된 한국판 PNG ↔ 호출 맥락</span><a class="btn" target="_blank" href="https://github.com/Hagun-creator/NangmanMacro-publicimagestorage/issues/new?template=image_submission.yml">사진 제출</a><a class="btn secondary" href="review.html">제출 이미지 검토</a></div></header>
 <main>
-<div class="panel intro"><b>프로젝트 소개</b><br>중국판 연우강호 Shute6 이미지 템플릿을 한국판 낭만강호에 맞게 교체·정리하는 공동수집 사이트입니다. 숫자·괄호·쉼표처럼 한국판에서도 동일한 공용 템플릿은 Shute6 원본을 재사용합니다. 동일 의미의 화면 크기 변형 세트는 한국판 구현에서 하나의 이미지셋으로 통합합니다. 현재 DialogButtonBreath720은 DialogButtonBreath에, BattleArrayNameBig은 BattleArrayName에 통합합니다. 한국판에서 비활성화하기로 한 무기·방어구 구매, 장비 자동선택, 단조 및 장비 문구 인식 관련 기능에 필요한 WeaponName, ArmorName, DialogButtonForge, EquipmentWord는 수집 대상에서 제외합니다.</div>
-<div class="panel"><div class="toolbar"><input id="search" placeholder="폴더/이미지/함수 검색"><select id="only"><option value="all">전체</option><option value="missing">한국판 미수집만</option><option value="done">검증완료만</option><option value="dups">중복만</option></select></div><div class="muted">XY 전체, TeaTemperate 전체, 다른 폴더의 0~9·(·)·, 항목은 Shute6 원본 재사용으로 검증완료 처리합니다. DialogButtonBreath720과 BattleArrayNameBig은 별도 폴더로 수집하지 않고 각각 DialogButtonBreath, BattleArrayName에 합쳐 표시합니다. WeaponName·ArmorName·DialogButtonForge·EquipmentWord는 사이트와 수집 진행률에서 제외합니다.</div></div>
+<div class="panel intro"><b>프로젝트 소개</b><br>중국판 연우강호 Shute6 이미지 템플릿을 한국판 낭만강호에 맞게 교체·정리하는 공동수집 사이트입니다. 숫자·괄호·쉼표처럼 한국판에서도 동일한 공용 템플릿은 Shute6 원본을 재사용합니다. 동일 의미의 화면 크기 변형 세트는 한국판 구현에서 하나의 이미지셋으로 통합합니다. 현재 DialogButtonBreath720은 DialogButtonBreath에, BattleArrayNameBig은 BattleArrayName에 통합합니다. 한국판에서 비활성화하기로 한 무기·방어구 구매, 장비 자동선택, 단조 및 장비 문구 인식 관련 기능에 필요한 WeaponName, ArmorName, DialogButtonForge, EquipmentWord는 수집 대상에서 제외합니다. LiuShanMen(육선문), JuHunGe(구혼각), Escort(표송), WhaleEscort(거경방 표송)는 한국판 전용 화면을 나중에 별도로 전체 캡처할 예정이므로 현재 공동수집 대상에서는 제외합니다.</div>
+<div class="panel"><div class="toolbar"><input id="search" placeholder="폴더/이미지/함수 검색"><select id="only"><option value="all">전체</option><option value="missing">한국판 미수집만</option><option value="done">검증완료만</option><option value="dups">중복만</option></select></div><div class="muted">XY 전체, TeaTemperate 전체, 다른 폴더의 0~9·(·)·, 항목은 Shute6 원본 재사용으로 검증완료 처리합니다. DialogButtonBreath720과 BattleArrayNameBig은 별도 폴더로 수집하지 않고 각각 DialogButtonBreath, BattleArrayName에 합쳐 표시합니다. WeaponName·ArmorName·DialogButtonForge·EquipmentWord는 사이트와 수집 진행률에서 제외합니다. LiuShanMen·JuHunGe·Escort·WhaleEscort도 한국판 전용 이미지셋을 나중에 별도 구축하므로 현재 사이트와 진행률에서 제외합니다.</div></div>
 <div id="root" class="panel"><h2 style="margin-top:0">Shute6 이미지 디렉토리</h2><div id="folderGrid" class="foldergrid"></div></div>
 <div id="folderView" class="panel hidden"><div class="crumb"><button onclick="goRoot()">← 모든 폴더</button><span>/</span><b id="folderName"></b></div><div id="folderMeta" class="muted"></div><div id="itemGrid" class="cards"></div></div>
 </main>
 <script>
 let DATA=null,current=null;
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const DISABLED_CATEGORIES=new Set(['WeaponName','ArmorName','DialogButtonForge','EquipmentWord']);
+const DISABLED_CATEGORIES=new Set(['WeaponName','ArmorName','DialogButtonForge','EquipmentWord','LiuShanMen','JuHunGe','Escort','WhaleEscort']);
 const CATEGORY_MERGE={'DialogButtonBreath720':'DialogButtonBreath','BattleArrayNameBig':'BattleArrayName'};
 const SHUTE6_REUSE_NAMES=new Set(['0','1','2','3','4','5','6','7','8','9','(',')',',']);
 function isDisabledCategory(cat){return DISABLED_CATEGORIES.has(String(cat||''))}
