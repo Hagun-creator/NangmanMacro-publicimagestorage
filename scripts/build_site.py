@@ -4,6 +4,18 @@ ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/'data'; SITE=ROOT/'docs'; OUT=ROOT/'dist'
 if OUT.exists(): shutil.rmtree(OUT)
 shutil.copytree(SITE,OUT)
+
+# Inject the project introduction into the built home page without duplicating it
+intro_path=OUT/'intro.html'
+index_path=OUT/'index.html'
+if intro_path.exists() and index_path.exists():
+    intro=intro_path.read_text(encoding='utf-8').strip()
+    html=index_path.read_text(encoding='utf-8')
+    marker='<main>'
+    if intro and intro not in html and marker in html:
+        html=html.replace(marker,marker+'\n'+intro+'\n',1)
+        index_path.write_text(html,encoding='utf-8')
+
 (OUT/'generated'/'original').mkdir(parents=True)
 (OUT/'generated'/'verified').mkdir(parents=True)
 meta=json.loads((DATA/'templates_meta.json').read_text(encoding='utf-8'))
