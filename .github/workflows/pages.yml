@@ -1,10 +1,12 @@
-name: Deploy image collection site
+name: Deploy image browser
 
 on:
   push:
     branches: ["main"]
     paths:
       - "docs/**"
+      - "scripts/**"
+      - "shute6_site_data_v1.zip"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -30,10 +32,19 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Upload artifact
+      - name: Expand Shute6 image data
+        run: |
+          if [ ! -f shute6_site_data_v1.zip ]; then
+            echo "Missing shute6_site_data_v1.zip"
+            exit 1
+          fi
+          unzip -o shute6_site_data_v1.zip
+      - name: Build 1037-template PNG browser
+        run: python scripts/build_site.py
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs
-      - name: Deploy to GitHub Pages
+          path: ./dist
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
