@@ -1,13 +1,17 @@
 name: 한국판 이미지 제출
 description: 낭만강호 한국판 스크린샷을 제출합니다.
 title: "[이미지 제출] "
-labels: []
+labels:
+  - 검토대기
 body:
   - type: markdown
     attributes:
       value: |
         낭만강호 한국판 이미지 수집에 참여해주셔서 감사합니다.
         가능하면 **전체 스크린샷 원본**을 첨부해주세요. 필요한 부분은 검수 단계에서 다시 크롭합니다.
+
+        저장소 관리자 **Hagun-creator**가 직접 제출한 경우에는 자동으로 `승인` 상태로 전환됩니다.
+        다른 참여자의 제출은 `검토대기` 상태에서 검수를 시작합니다.
 
   - type: dropdown
     id: category
